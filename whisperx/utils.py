@@ -220,7 +220,7 @@ from whisper.utils import SubtitlesWriter, ResultWriter, WriteTXT, WriteVTT, Wri
 class WriteASS(ResultWriter):
     extension: str = "ass"
 
-    def write_result(self, result: dict, file: TextIO):
+    def write_result(self, result: dict, file: TextIO, options:dict = None):
         write_ass(result["segments"], file, resolution="word")
 
 class WriteASSchar(ResultWriter):

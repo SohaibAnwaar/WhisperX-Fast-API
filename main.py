@@ -40,12 +40,14 @@ async def transcribe_audio(data: RequestData):
         results = transcribe_whisperx(audio_path)
         # Writing to ass file
         writer = whisperx.utils.get_writer("ass", tmpdirname)
+        import pdb; pdb.set_trace()
         writer(results, audio_path)
+
 
         json_filepath = audio_filename.replace(".mp3", ".json")
         json_filepath = f"{tmpdirname}/{audio_filename}.json"
         # save content in jsonfile
-        with open(json_filepath, "w") as outfile:
+        with open(json_filepath, "w", encoding="utf-8") as outfile:
             json.dump(results["word_segments"], outfile)
         # save json file to azure
         save_results_to_azure(json_url, json_filepath)

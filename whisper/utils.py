@@ -74,7 +74,7 @@ class ResultWriter:
     def __init__(self, output_dir: str):
         self.output_dir = output_dir
 
-    def __call__(self, result: dict, audio_path: str, options: dict):
+    def __call__(self, result: dict, audio_path: str, options: dict= None):
         audio_basename = os.path.basename(audio_path)
         audio_basename = os.path.splitext(audio_basename)[0]
         output_path = os.path.join(
@@ -84,7 +84,7 @@ class ResultWriter:
         with open(output_path, "w", encoding="utf-8") as f:
             self.write_result(result, file=f, options=options)
 
-    def write_result(self, result: dict, file: TextIO, options: dict):
+    def write_result(self, result: dict, file: TextIO, options: dict = None):
         raise NotImplementedError
 
 
